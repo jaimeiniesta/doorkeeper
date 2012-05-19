@@ -1,6 +1,9 @@
 class Doorkeeper::TokensController < Doorkeeper::ApplicationController
 
-  before_filter :parse_client_info_from_basic_auth, :only => :create
+  # Temporarily disable this feature as it might collide with HTTP Basic Auth
+  # https://github.com/applicake/doorkeeper/pull/31#issuecomment-5802946
+  #
+  # before_filter :parse_client_info_from_basic_auth, :only => :create
 
   def create
     response.headers.merge!({

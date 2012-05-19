@@ -12,7 +12,11 @@ feature 'Token endpoint' do
     should_have_header 'Cache-Control', 'no-store'
   end
 
+  # Temporarily disable this feature as it might collide with HTTP Basic Auth
+  # https://github.com/applicake/doorkeeper/pull/31#issuecomment-5802946
+  #
   scenario 'accepts client credentials with basic auth header' do
+    pending
     post token_endpoint_url(:code => @authorization.token, :redirect_uri => @client.redirect_uri),
                             {} ,
                             { 'HTTP_AUTHORIZATION' => basic_auth_header_for_client(@client) }
